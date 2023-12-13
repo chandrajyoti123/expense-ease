@@ -1,5 +1,11 @@
 import { model,Schema } from "mongoose";
 const transactionschema=new Schema({
+   user:{
+            type:Schema.Types.ObjectId,
+            ref:"SingUpUser",
+            required:true
+    },
+  
 amount:{
     type:"Number",
     required:true,
@@ -11,7 +17,7 @@ type:{
 },
 category:{
     type:"String",
-    enum : ['food','shopping','education','travell','entertainment',"salary","business","money interest","other"],
+    enum : ['food','shopping','education','travel','entertainment',"salary","business","money interest","other"],
     default:"other"
   
 },

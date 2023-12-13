@@ -1,0 +1,33 @@
+.sidebar{
+  width: 28%;
+  height: 100vh;
+  background-color: lightgreen;
+}
+.userimg{
+    width: 120px;
+}
+.user-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+}
+.user-name{
+    font-size: 25px;
+    margin-left: 10px;
+}
+.sidebar ul{
+    display: flex;
+    flex-direction: column;
+    padding-left: 20%;
+    margin: 30px;
+}
+.sidebar ul li{
+    list-style: none;
+    font-size: 25px;
+    margin: 5px 0;
+}
+.links{
+    text-decoration: none;
+}

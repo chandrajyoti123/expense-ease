@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SingUp from './view/SingUP/SingUp';
 import Login from './view/Login/Login';
 import Home from './view/Home/Home';
+import Transaction from './view/Transaction/Transaction';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -16,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: '/singup',
     element: <SingUp />
+  },
+  {
+    path: '/transaction',
+    element: <Transaction />
   },
 
 

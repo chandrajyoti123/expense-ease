@@ -2,8 +2,11 @@ import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import Transaction from './models/Transaction.js'
+// import getapitransactionbyid from './controllers/TransactionById.js'
+
 
 import { postapilogin,postapisingupuser } from './controllers/SingUp.js'
+
 dotenv.config()
 
 const app=express()
@@ -17,9 +20,9 @@ const connectMongoDB=async()=>{
 }
 
 app.post("/api/transactions",async(req,res)=>{
-    const {amount,type,category,description}=req.body;
+    const {user,amount,type,category,description}=req.body;
     const transaction=new Transaction({
-        amount,type,category,description
+        user,amount,type,category,description
     })
    try{
     const savedtransaction=await transaction.save();
@@ -36,12 +39,24 @@ app.post("/api/transactions",async(req,res)=>{
    }
 })
 app.get("/api/transactions",async (req,res)=>{
-    const alltransaction=await Transaction.find();
+    const alltransaction=await Transaction.find().populate('user');
     return res.json({
         success:true,
         data:alltransaction,
         message:"all transaction fetched successfully"
     })
+})
+app.get('/api/gettransactionsbyid/:_id',async(req,res)=>{
+   
+    const {_id}=req.params
+    const findtransaction= await Transaction.find({user:{_id:_id}}).populate('user')
+    
+    res.json({
+      success:true,
+      data:findtransaction,
+       message:" Order of user founds successfully"  
+     })
+ 
 })
 
 // -------------singup--------------
