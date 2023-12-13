@@ -2,6 +2,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import Transaction from './models/Transaction.js'
+
+import { postapilogin,postapisingupuser } from './controllers/SingUp.js'
 dotenv.config()
 
 const app=express()
@@ -33,9 +35,23 @@ app.post("/api/transactions",async(req,res)=>{
     })
    }
 })
+app.get("/api/transactions",async (req,res)=>{
+    const alltransaction=await Transaction.find();
+    return res.json({
+        success:true,
+        data:alltransaction,
+        message:"all transaction fetched successfully"
+    })
+})
+
+// -------------singup--------------
+ app.post('/api/singupusers',postapisingupuser)
+app.post('/api/loginusers',postapilogin)
+
+
 
 connectMongoDB()
-   const PORT=5000
+   const PORT=8080
 app.listen(PORT,()=>{
     console.log(`server is running in port ${PORT}`)
 })

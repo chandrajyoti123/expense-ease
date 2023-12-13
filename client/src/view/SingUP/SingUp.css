@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.singup-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: lightgoldenrodyellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-model {
+    width: 30%;
+    height: 600px;
+    background-color: rgb(56, 128, 128);
+    padding-top: 30px;
+
+}
+
+.input-field {
+    width: 90%;
+    height: 45px;
+    font-size: 20px;
+    display: block;
+    margin: 10px auto;
+    padding-left: 10px;
+}
+
+.sing-up {
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+    display: block;
+    margin: 10px auto;
+}
