@@ -1,16 +1,88 @@
 .transaction-card{
   width: 80%;  
-  height: auto;
-  background-color: limegreen;
-  margin: 10px;
+  height: 180px;
+
+  margin: 20px;
+  display: flex;
+  background-color: #def3fd;
+  box-shadow: 0 0 5px 2px #9dc7db;
+  transition: 0.5s;
+}
+.transaction-card:hover{
+  
+  box-shadow: 0 0 5px 1px #9dc7db;
 }
 .transac-money{
     font-size: 20px;
    
 }
-.tran-description{
+.transaction-card1{
+    width: 20%;
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.transaction-card-img{
+    width: 100px;
+}
+.transaction-card2{
+    width: 60%;
+    height: 100%;
+
+    padding:3% 2%;
+}
+.transaction-amount{
     font-size: 35px;
+    font-weight: bold;
+    margin: 10px 0;
+  
+
 }
 .category{
-    font-size: 20px;
+    font-size: 30px;
+    text-transform: capitalize;
+    font-weight: 600;
+    
 }
+.transaction-message{
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    margin-top: 3px;
+    
+   
+   
+}
+.chat-img{
+    width: 25px;
+    margin-right: 4px;
+}
+.transaction-card3{
+    width: 20%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 5px;
+}
+.edit-section{
+    display: flex;
+    flex-direction: column;
+  align-items: end;
+}
+
+.edit-img{
+    width: 30px;
+}
+.date-section{
+    font-size: 20px;
+    margin-left: auto;
+}
+.date-img{
+    width: 20px;
+    margin-right: 5px;
+
+}
+

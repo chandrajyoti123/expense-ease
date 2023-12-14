@@ -17,7 +17,7 @@ type:{
 },
 category:{
     type:"String",
-    enum : ['food','shopping','education','travel','entertainment',"salary","business","money interest","other"],
+    enum : ['food','shopping','education','travel','entertainment',"salary","business","EMI","housing","vehicle","financial expenses","investment","other"],
     default:"other"
   
 },

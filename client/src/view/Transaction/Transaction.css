@@ -10,7 +10,37 @@
 .sub-container{
     width: 73%;
     height: 100vh;
-    background-color: red;
+ 
+}
+.navhead{
+    width:100%;
+    height: 35px;
+    background-color: lightpink;
+    display: flex;
+    justify-content: space-between;
+}
+.navhead-link{
+    width: 33%;
+    height: 100%;
+    background-color: rgb(181, 164, 230);
+}
+.all-transaction{
+    width: 100%;
+    height: 100%;
+  
+}
+.credited-transaction{
+    width: 100%;
+    height: 100%;
+    /* background-color: yellow; */
+}
+.debited-transaction{
+    width: 100%;
+    height: 100%;
+    /* background-color: pink; */
+}
+.displayblock{
+    display: block;
 }
 .plus-img{
     width: 70px;

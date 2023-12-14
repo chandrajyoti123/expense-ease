@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { query } from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import Transaction from './models/Transaction.js'
@@ -25,7 +25,7 @@ app.post("/api/transactions",async(req,res)=>{
         user,amount,type,category,description
     })
    try{
-    const savedtransaction=await transaction.save();
+   const savedtransaction=await transaction.save();
     return res.json({
         success:true,
         data:savedtransaction,
@@ -58,15 +58,56 @@ app.get('/api/gettransactionsbyid/:_id',async(req,res)=>{
      })
  
 })
+app.delete('/api/transactions/:_id',async(req,res)=>{
+    const {_id}=req.params;
+    await Transaction.deleteOne({_id:_id})
+    const alltransaction=await Transaction.find()
+    return res.json({
+        success:true,
+        data:alltransaction,
+        message:"transaction deleted successfully"
+        
+    })
+})
+
+app.put('/api/transaction/:_id',async(req,res)=>{
+    const {_id}=req.params
+    const {user,amount,type,category,description}=req.body
+     await Transaction.updateOne({_id:_id},{$set:{
+        user:user,
+        amount:amount,
+        type:type,
+        category:category,
+        description:description}})
+    const updatedtransaction=await Transaction.findOne({_id:_id}).populate('user')
+    res.json({
+        success:true,
+        data:updatedtransaction,
+        message:"transaction updated successfully"
+    })
+
+})
+
+app.get('/api/transaction/:_id',async(req,res)=>{
+    const {_id}=req.params
+    const foundtransaction=await Transaction.findOne({_id:_id})
+    return res.json({
+        success:true,
+        data:foundtransaction,
+        message:"data got successfully "
+    })
+})
 
 // -------------singup--------------
  app.post('/api/singupusers',postapisingupuser)
-app.post('/api/loginusers',postapilogin)
+ app.post('/api/loginusers',postapilogin)
+
+ 
 
 
 
 connectMongoDB()
-   const PORT=8080
+   const PORT=5000
 app.listen(PORT,()=>{
     console.log(`server is running in port ${PORT}`)
 })
