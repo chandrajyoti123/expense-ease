@@ -1,0 +1,32 @@
+.login-container{
+    max-width: 100vw;
+    height: 100vh;
+ background-color:#f0defd !important;
+    background: url('./login.png');
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: right;
+    padding-top: 5%;
+    
+}
+.login-sub-container{
+    width: 40%;
+    height: auto;
+    background-color: #fff;
+    margin-left: 10%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.switch{
+    font-size: 25px;
+    color: 	 #1d0330;
+    margin-left: 15px;
+    text-transform: capitalize;
+}
+.singup-link{
+    text-decoration: none;
+}
+.margin-top{
+    margin-top: 30px !important;
+}

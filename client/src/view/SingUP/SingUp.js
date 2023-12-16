@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './SingUp.css'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 export default function SingUp() {
   const [firstname, setFirstname] = useState('')
@@ -106,8 +107,9 @@ export default function SingUp() {
                 setPasswordcon(e.target.value)
               }} />
             </div>
+            <div className='switch'><Link to={'/login'} className='singup-link'>already have an accoutn?</Link> </div>
             
-            <button type='button' className='submit-btn'>signup</button>
+            <button type='button' className='submit-btn margin-top'>signup</button>
 
           </div>
 

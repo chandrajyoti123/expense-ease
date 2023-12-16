@@ -15,8 +15,9 @@ export default function Transaction() {
   const [debitAmt, setDebitAmt] = useState('');
   const loadlogineduser = () => {
     const response = JSON.parse(localStorage.getItem('exloginuser'))
-   setUserid(response._id)
+     setUserid(response._id)
   }
+  console.log(userid)
   const loadTransaction = async () => {
     try {
       const response = await axios.get(`/api/transactions/${userid}`)
@@ -64,10 +65,10 @@ export default function Transaction() {
 
   }
   const closemodel = async (_id) => {
-    if(!userid){
-      alert("user is not found")
-      return
-    }
+    // if(!userid){
+    //   alert("user is not found")
+    //   return
+    // }
     if(!amount){
       alert("please enter amount")
       return
@@ -109,18 +110,18 @@ export default function Transaction() {
 
 
   }
-  const close_model_global = () => {
-    setUserid('')
-    setAmount('')
-    setType('')
-    setCategory('')
-    setDescription('')
-    setModelclass('displaynone')
-    setModelwrapper('')
-    document.body.style.overflowY = "scroll"
+  // const close_model_global = () => {
+  //   setUserid('')
+  //   setAmount('')
+  //   setType('')
+  //   setCategory('')
+  //   setDescription('')
+  //   setModelclass('displaynone')
+  //   setModelwrapper('')
+  //   document.body.style.overflowY = "scroll"
   
 
-  }
+  // }
 
  
   const [alltran, setAlltran] = useState('')
@@ -243,7 +244,8 @@ export default function Transaction() {
       setModelclass('displaynone')
       setModelwrapper('')
        document.body.style.overflowY = "scroll"
-       loadTransaction()
+      //  loadTransaction()
+      window.location.reload()
        alert("transaction updated successfully")
      
    }else{
@@ -329,11 +331,11 @@ export default function Transaction() {
       </div>
 
 
-      <div className={`${modelwrapper}`} onClick={close_model_global}></div>
+      <div className={`${modelwrapper}`} ></div>
       <div className={` transaction-model ${modelclass}`}>
         {/* <div className='model-heading'>add your transactions</div> */}
-        <div className='type-section'>
-          <div className={`credeb credit  ${typeclasscredit}`} onClick={typecredit}>Credit</div>
+          <div className='type-section'>
+            <div className={`credeb credit  ${typeclasscredit}`} onClick={typecredit}>Credit</div>
           <div className={`credeb debit  ${typeclassdebit}`} onClick={typedebit}>Debit</div>
         </div>
         <div className='model-feild-con'>
@@ -380,7 +382,7 @@ export default function Transaction() {
 
        
         <button type='button' className='submit-btn' onClick={closemodel}>submit</button>
-         {/* <button type='button' className='submit-btn' onClick={updatetransactionfuc}>update</button>  */}
+         <button type='button' className='submit-btn' onClick={updatetransactionfuc}>update</button> 
 
       </div>
 

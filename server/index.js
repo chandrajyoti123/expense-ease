@@ -107,7 +107,7 @@ app.get('/api/transaction/:_id',async(req,res)=>{
 
 
 
-// -------------singup--------------
+    // -------------singup--------------
       app.post('/api/singupusers',postapisingupuser)
        app.post('/api/loginusers',postapilogin)
 
