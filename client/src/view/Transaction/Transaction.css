@@ -10,19 +10,34 @@
 .sub-container{
     width: 73%;
     height: 100vh;
+
+    overflow-y: scroll;
  
 }
 .navhead{
     width:100%;
-    height: 35px;
-    background-color: lightpink;
+    height: 60px;
+    /* background-color: lightpink; */
     display: flex;
     justify-content: space-between;
 }
 .navhead-link{
     width: 33%;
     height: 100%;
-    background-color: rgb(181, 164, 230);
+    /* background-color: rgb(181, 164, 230); */
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  text-transform: capitalize;
+  font-weight: bold;
+  background-color:  #fcf7de;
+  box-shadow: 0 0 10px 4px   	 #f8eeb9;
+  cursor: pointer;
+}
+.bold-navlink{
+    background-color:     #f6e8a2;
+    /* box-shadow: 0 0 15px 4px  #f4e38a; */
 }
 .all-transaction{
     width: 100%;
@@ -51,13 +66,15 @@
 
 .postmodel{
     width: 30%;
-    height: 500px;
+    height: auto;
     background-color: white;
     position:fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     z-index: 10000;
+    padding: 20px 0 20px 0;
+    border-radius: 10px;
 }
 .model-heading{
     font-size: 30px;
@@ -68,9 +85,10 @@
 .type-section{
     width: 100%;
     height: 50px;
-    background-color: #f0defd;
+    background-color: rgb(240, 222, 253);
    
     display: flex;
+    margin-bottom: 25px;
 }
 .credeb{
     width: 50%;
@@ -84,9 +102,13 @@
 }
 .credit{
     box-shadow: 5px 5px 5px 1px #ceb2e2;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
 }
 .debit{
     box-shadow: 0px 5px 5px 1px #ceb2e2;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
 }
 .type-bold{
     background-color: #deb7fb;
@@ -94,27 +116,55 @@
 }
 .input-label{
     font-size: 25px;
+    color: 	 black;
+    font-weight: 500;
+    margin-bottom: 10px;
+ 
+    
 
 }
 .input-box{
     width: 100%;
     height: 50px;
     display: block;
+    font-size: 20px;
+    color: 	 #1d0330;
+    padding-left: 15px;
+    border-radius: 10px;
+    background-color: #f0defd;
+    border: 1px solid #deb7fb;
 }
 .select-field{
     width: 100%;
     height: 50px;
     display: block;
+    font-size: 20px;
+    color: 	 #1d0330;
+    padding-left: 15px;
+    border-radius: 10px;
+    background-color: #f0defd;
+    border: 1px solid #deb7fb;
+
 }
 .displaynone{
     display: none;
 }
+.model-feild-con{
+    padding: 0 15px;
+    margin-bottom: 20px;
+}
 .submit-btn{
     width: 120px;
-    height: 50px;
+    height: 45px;
     display: block;
-    background-color: lightsteelblue;
+    background-color: #d4a9f3;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 4px #ceb2e2;
     margin: 10px auto;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
 }
 .model-wrapper{
     position:fixed ;

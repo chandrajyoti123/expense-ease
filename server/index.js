@@ -80,7 +80,7 @@ app.get('/api/transaction/:_id',async(req,res)=>{
       })
 })
 
-  app.put('/api/transaction/:_id',async(req,res)=>{
+    app.put('/api/transaction/:_id',async(req,res)=>{
     const {_id}=req.params
     const {user,amount,type,category,description}=req.body
      try{

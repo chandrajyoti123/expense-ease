@@ -128,22 +128,35 @@ export default function Transaction() {
   const [debit, setDebit] = useState('displaynone')
   const [transactionid, setTransactionid] = useState('')
   const [isedit, setIsedit] = useState('')
+  const [allclass,setAllclass]=useState('bold-navlink')
+  const [creclass,setCreclass]=useState('')
+  const [debclass,setDebclass]=useState('')
 
   const alltranfun = () => {
     setAlltran('displayblock')
     setCredittran('displaynone')
     setDebit('displaynone')
+    setAllclass("bold-navlink")
+    setCreclass("")
+    setDebclass("")
   }
-  const credittranfun = () => {
+    const credittranfun = () => {
     setCredittran('displayblock')
     setAlltran('displaynone')
     setDebit('displaynone')
+    setAllclass("")
+    setCreclass("bold-navlink")
+    setDebclass("")
+    
 
   }
   const debittranfun = () => {
     setDebit('displayblock')
     setCredittran('displaynone')
     setAlltran('displaynone')
+    setAllclass("")
+    setCreclass("")
+    setDebclass("bold-navlink")
 
   }
   // -----------delete transaction-------
@@ -271,12 +284,12 @@ export default function Transaction() {
 
       <SideBar />
        <div className='sub-container'>
-        <h1>credit={creditAmt} debit={debitAmt}</h1>
+        {/* <h1>credit={creditAmt} debit={debitAmt}</h1> */}
 
          <div className='navhead'>
-          <span className='navhead-link' onClick={alltranfun}>all</span>
-          <span className='navhead-link' onClick={credittranfun}>credit</span>
-          <span className='navhead-link' onClick={debittranfun}>debit</span>
+          <span className={`navhead-link ${allclass}`} onClick={alltranfun}>all</span>
+          <span className={`navhead-link ${creclass}`} onClick={credittranfun}>credit</span>
+          <span className={`navhead-link ${debclass}`} onClick={debittranfun}>debit</span>
 
          </div>
         <div className={`all-transaction ${alltran}`} >
@@ -298,7 +311,7 @@ export default function Transaction() {
           }
 
         </div> 
-       <div className={`debited-transaction ${debit}`}>
+       <div className={`debited-transaction ${debit} `}>
           {
             transactions.map((transaction, i) => {
               const { amount, category, description, type } = transaction
@@ -323,7 +336,7 @@ export default function Transaction() {
           <div className={`credeb credit  ${typeclasscredit}`} onClick={typecredit}>Credit</div>
           <div className={`credeb debit  ${typeclassdebit}`} onClick={typedebit}>Debit</div>
         </div>
-        <div>
+        <div className='model-feild-con'>
         <label className='input-label' id='amount'>Amount</label>
         <input type='text' placeholder='amount' id='amount' className='input-box' value={amount} onChange={(e) => {
           setAmount(e.target.value)
@@ -335,6 +348,8 @@ export default function Transaction() {
         {/* <input type='text' placeholder='category' className='input-field' value={category} onChange={(e) => {
           setCategory(e.target.value)
         }} /> */}
+
+<div className='model-feild-con'>
   <label htmlFor='category' className='input-label'>Category</label>      
 <select  id='category' value={category} onChange={(e)=>{
   setCategory(e.target.value)
@@ -354,12 +369,18 @@ export default function Transaction() {
   <option value={'investment'}>Investment</option>
   <option value={'other'}>Other</option>
 </select>
+</div>
 
-        <input type='email' placeholder='description' className='input-field' value={description} onChange={(e) => {
+<div className='model-feild-con'>
+        <label className='input-label' htmlFor='description'>Description</label>
+        <input type='email' placeholder='description' id='description' className='input-box' value={description} onChange={(e) => {
           setDescription(e.target.value)
         }} />
+        </div>
+
+       
         <button type='button' className='submit-btn' onClick={closemodel}>submit</button>
-         <button type='button' className='submit-btn' onClick={updatetransactionfuc}>update</button> 
+         {/* <button type='button' className='submit-btn' onClick={updatetransactionfuc}>update</button>  */}
 
       </div>
 

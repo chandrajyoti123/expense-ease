@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.singup-container {
+/* .singup-container {
     width: 100vw;
     height: 100vh;
     background-color: lightgoldenrodyellow;
@@ -36,4 +36,36 @@
     font-size: 20px;
     display: block;
     margin: 10px auto;
+} */
+
+.signup-container{
+    max-width: 100vw;
+    height: 100vh;
+    background-color:#f0defd;
+    background-image: url('./signup.png');
+    background-size: 50% 100% ;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: end;
+    align-items: start;
+    padding-right: 100px;
+    padding-top: 20px;
+
+   
 }
+.singup-sub-container{
+    width: 40%;
+    height: 600px;
+    background-color: #fff;
+    padding-top: 20px;
+  
+}
+.heading{
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+
