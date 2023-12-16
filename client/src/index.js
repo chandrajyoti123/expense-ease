@@ -5,6 +5,7 @@ import SingUp from './view/SingUP/SingUp';
 import Login from './view/Login/Login';
 import Home from './view/Home/Home';
 import Transaction from './view/Transaction/Transaction';
+import Graph from './view/Graph/Graph';
 
 const router = createBrowserRouter([
   {
@@ -19,11 +20,15 @@ const router = createBrowserRouter([
     path: '/singup',
     element: <SingUp />
   },
+  
   {
     path: '/transaction',
     element: <Transaction />
   },
-
+   {
+    path: '/graph',
+    element: <Graph />
+  },
 
 
 ])

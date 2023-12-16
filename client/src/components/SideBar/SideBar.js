@@ -13,7 +13,7 @@ export default function SideBar() {
         <ul> 
             <li><Link to={''}  className='links'>dashboard</Link> </li>
             <li><Link to={'/transaction'}  className='links'>transaction</Link> </li>
-            <li><Link to={''}  className='links'>graph</Link> </li>
+            <li><Link to={'/graph'}  className='links'>graph</Link> </li>
             <li><Link to={''}  className='links'>balance</Link> </li>
         </ul>
       
