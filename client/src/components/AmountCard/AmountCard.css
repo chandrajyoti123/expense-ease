@@ -1,0 +1,18 @@
+.amount-card{
+    width: 300px;
+    height: 100px;
+  
+    background-color: #f0defd;
+    box-shadow: 0 0 10px 0  #c987f8;
+    padding: 10px 15px;
+    margin-right: 10%;
+}
+.amount-card-heading{
+    font-size: 25px;
+    font-weight: 500px;
+}
+.amount-card-value{
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 2px;
+}

@@ -12,8 +12,14 @@
     height: 100vh;
 
     overflow-y: scroll;
-    padding-left: 5%;
  
+ 
+}
+.sub-container1{
+    width: 100%;
+    height: auto;
+       padding-left: 5%;
+
 }
 .navhead{
     width:100%;
@@ -21,6 +27,10 @@
     /* background-color: lightpink; */
     display: flex;
     justify-content: space-between;
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    margin-bottom: 50px;
 }
 .navhead-link{
     width: 33%;

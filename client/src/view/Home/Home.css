@@ -18,6 +18,10 @@
 .piechart{
     margin-left: 200px;
 }
+.transaction-amount-section{
+    display: flex;
+    margin-bottom: 50px;
+}
 .home-container{
  /* background-color: lightcoral; */
 }

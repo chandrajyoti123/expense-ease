@@ -21,9 +21,9 @@ export default function SideBar() {
             <div className='user-name'>{user.first_name} {user.last_name}</div>
         </div>
         <ul> 
-            <li><Link to={''}  className='links'>dashboard</Link> </li>
+            <li><Link to={'/'}  className='links'>dashboard</Link> </li>
             <li><Link to={'/transaction'}  className='links'>transaction</Link> </li>
-            <li><Link to={'/graph'}  className='links'>graph</Link> </li>
+            {/* <li><Link to={'/graph'}  className='links'>graph</Link> </li> */}
             {/* <li><Link to={''}  className='links'>balance</Link> </li> */}
         </ul>
 

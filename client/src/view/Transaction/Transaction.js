@@ -15,7 +15,7 @@ export default function Transaction() {
   const [debitAmt, setDebitAmt] = useState('');
   const loadlogineduser = () => {
     const response = JSON.parse(localStorage.getItem('exloginuser'))
-     setUserid(response._id)
+    setUserid(response._id)
   }
   console.log(userid)
   const loadTransaction = async () => {
@@ -48,7 +48,7 @@ export default function Transaction() {
   //   loadTransaction()
   // }, [userid])
 
-  
+
   // ------------post transaction -----------------
 
   const [amount, setAmount] = useState('')
@@ -69,44 +69,45 @@ export default function Transaction() {
     //   alert("user is not found")
     //   return
     // }
-    if(!amount){
+    if (!amount) {
       alert("please enter amount")
       return
     }
-    if(!type){
+    if (!type) {
       alert("please enter a type")
       return
     }
-    if(!category){
+    if (!category) {
       alert("please enter category")
       return
     }
-    if(!description){
+    if (!description) {
       alert("please enter description")
     }
-   
- try{
-    const response = await axios.post("/api/transactions", {
-      user: userid,
-      amount: amount,
-      type: type,
-      category: category,
-      description: description})
-    if (response?.data?.data) {
-      loadTransaction()
-      setAmount('')
-      setCategory('')
-      setType('')
-      setDescription('')
-      setModelclass('displaynone')
-      setModelwrapper('')
-      document.body.style.overflowY = "scroll"
-     } else (
-      alert(response?.data?.message)
-    )
-   }catch(err){
-    console.log(err)
-   }
+
+    try {
+      const response = await axios.post("/api/transactions", {
+        user: userid,
+        amount: amount,
+        type: type,
+        category: category,
+        description: description
+      })
+      if (response?.data?.data) {
+        loadTransaction()
+        setAmount('')
+        setCategory('')
+        setType('')
+        setDescription('')
+        setModelclass('displaynone')
+        setModelwrapper('')
+        document.body.style.overflowY = "scroll"
+      } else (
+        alert(response?.data?.message)
+      )
+    } catch (err) {
+      console.log(err)
+    }
 
 
   }
@@ -119,19 +120,19 @@ export default function Transaction() {
   //   setModelclass('displaynone')
   //   setModelwrapper('')
   //   document.body.style.overflowY = "scroll"
-  
+
 
   // }
 
- 
+
   const [alltran, setAlltran] = useState('')
   const [credittran, setCredittran] = useState('displaynone')
   const [debit, setDebit] = useState('displaynone')
   const [transactionid, setTransactionid] = useState('')
   const [isedit, setIsedit] = useState('')
-  const [allclass,setAllclass]=useState('bold-navlink')
-  const [creclass,setCreclass]=useState('')
-  const [debclass,setDebclass]=useState('')
+  const [allclass, setAllclass] = useState('bold-navlink')
+  const [creclass, setCreclass] = useState('')
+  const [debclass, setDebclass] = useState('')
 
   const alltranfun = () => {
     setAlltran('displayblock')
@@ -141,14 +142,14 @@ export default function Transaction() {
     setCreclass("")
     setDebclass("")
   }
-    const credittranfun = () => {
+  const credittranfun = () => {
     setCredittran('displayblock')
     setAlltran('displaynone')
     setDebit('displaynone')
     setAllclass("")
     setCreclass("bold-navlink")
     setDebclass("")
-    
+
 
   }
   const debittranfun = () => {
@@ -163,11 +164,11 @@ export default function Transaction() {
   // -----------delete transaction-------
 
   const deleteTransaction = async (_id) => {
-   try{
-    const response = await axios.delete(`/api/transactions/${_id}`)
-   }catch(err){
-    console.log(err)
-   }
+    try {
+      const response = await axios.delete(`/api/transactions/${_id}`)
+    } catch (err) {
+      console.log(err)
+    }
     loadTransaction()
   }
 
@@ -177,25 +178,25 @@ export default function Transaction() {
     setModelclass('postmodel')
     setModelwrapper('model-wrapper')
     document.body.style.overflowY = "hidden"
-    try{
-    const response = await axios.get(`/api/transaction/${_id}`)
-    
-    if (response?.data?.data) {
-      const { _id, user, amount, type, category, description } = response?.data?.data
-      setUserid(user)
-      setAmount(amount)
-      setType(type)
-      setCategory(category)
-      setDescription(description)
-      setTransactionid(_id)
-      
+    try {
+      const response = await axios.get(`/api/transaction/${_id}`)
+
+      if (response?.data?.data) {
+        const { _id, user, amount, type, category, description } = response?.data?.data
+        setUserid(user)
+        setAmount(amount)
+        setType(type)
+        setCategory(category)
+        setDescription(description)
+        setTransactionid(_id)
+
       }
-   
-     }
-   catch(err){
-    console.log(err)
-     }
-   }
+
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
 
   // useEffect(() => {
   //   const response = JSON.parse(localStorage.getItem('edittran'))
@@ -203,81 +204,81 @@ export default function Transaction() {
 
   // }, [transactionid])
 
-//   console.log(userid)
-// console.log(transactionid)
+  //   console.log(userid)
+  // console.log(transactionid)
   const updatetransactionfuc = async () => {
-    if(!userid){
+    if (!userid) {
       alert("user not found")
       return
     }
-    if(!amount){
+    if (!amount) {
       alert("enter amount")
       return
     }
-    if(!type){
+    if (!type) {
       alert("enter type")
       return
     }
-    if(!category){
+    if (!category) {
       alert("enter category")
       return
     }
-    if(!description){
+    if (!description) {
       alert("enter a description")
       return
     }
-    try{
-     const response = await axios.put(  `/api/transaction/${transactionid}`, {
-      user: userid,
-      amount: amount,
-      type: type,
-      category: category,
-      description: description
-     })
-     
-     if (response?.data?.data) {
-      setUserid('')
-      setAmount('')
-      setType('')
-      setCategory('')
-      setDescription('')
-      setModelclass('displaynone')
-      setModelwrapper('')
-       document.body.style.overflowY = "scroll"
-      //  loadTransaction()
-      window.location.reload()
-       alert("transaction updated successfully")
-     
-   }else{
-    alert(response?.data?.data)
-  }
+    try {
+      const response = await axios.put(`/api/transaction/${transactionid}`, {
+        user: userid,
+        amount: amount,
+        type: type,
+        category: category,
+        description: description
+      })
 
-   
-  
-  }
-   catch(err){
-    console.log(err)
-     }
+      if (response?.data?.data) {
+        setUserid('')
+        setAmount('')
+        setType('')
+        setCategory('')
+        setDescription('')
+        setModelclass('displaynone')
+        setModelwrapper('')
+        document.body.style.overflowY = "scroll"
+        //  loadTransaction()
+        window.location.reload()
+        alert("transaction updated successfully")
+
+      } else {
+        alert(response?.data?.data)
+      }
+
+
+
+    }
+    catch (err) {
+      console.log(err)
+    }
 
 
   }
 
 
   // -------------------transaction type-----------------------
-  const [typeclasscredit,setTypeclasscredit]=useState('')
-  const [typeclassdebit,setTypeclassdebit]=useState('')
-  const [istype,setIstype]=useState('')
+  const [typeclasscredit, setTypeclasscredit] = useState('')
+  const [typeclassdebit, setTypeclassdebit] = useState('')
+  const [istype, setIstype] = useState('')
 
-  const typecredit=()=>{
+  const typecredit = () => {
     setType("credit")
     setTypeclasscredit("type-bold")
     setTypeclassdebit("")
   }
-  const typedebit=()=>{
+  const typedebit = () => {
     setType("debit")
     setTypeclassdebit("type-bold")
     setTypeclasscredit("")
-    
+
   }
 
   return (
@@ -285,64 +286,65 @@ export default function Transaction() {
 
 
       <SideBar />
-       <div className='sub-container'>
+      <div className='sub-container'>
         {/* <h1>credit={creditAmt} debit={debitAmt}</h1> */}
-
-         <div className='navhead'>
+      
+        <div className='navhead'>
           <span className={`navhead-link ${allclass}`} onClick={alltranfun}>all</span>
           <span className={`navhead-link ${creclass}`} onClick={credittranfun}>credit</span>
           <span className={`navhead-link ${debclass}`} onClick={debittranfun}>debit</span>
 
-         </div>
+        </div>
+
+        <div className='sub-container1'>
         <div className={`all-transaction ${alltran}`} >
           {
             transactions.map((transaction, i) => {
-              const { amount, category, description, _id } = transaction
-              return <TransacCard amount={amount} category={category} description={description} _id={_id} deletetransaction={deleteTransaction}  editetransactions={editetransactions}  />
+              const { amount, category, description, _id ,type} = transaction
+              return <TransacCard amount={amount} category={category} description={description} _id={_id} deletetransaction={deleteTransaction} editetransactions={editetransactions} type={type} />
             })
           }
         </div>
-         <div className={`credited-transaction ${credittran}`} >
+        <div className={`credited-transaction ${credittran}`} >
           {
             transactions.map((transaction, i) => {
-              const { amount, category, description, type } = transaction
+              const { amount, category, description, _id, type } = transaction
               if (type == "credit") {
-                return <TransacCard amount={amount} category={category} description={description} deletetransaction={deleteTransaction} editetransactions={editetransactions} />
+                  return <TransacCard amount={amount} category={category} description={description} _id={_id} deletetransaction={deleteTransaction} editetransactions={editetransactions} type={type} />
               }
             })
           }
 
-        </div> 
-       <div className={`debited-transaction ${debit} `}>
+        </div>
+         <div className={`debited-transaction ${debit} `}>
           {
             transactions.map((transaction, i) => {
-              const { amount, category, description, type } = transaction
+              const { amount, category, description, type , _id} = transaction
               if (type == "debit") {
-                return <TransacCard amount={amount} category={category} description={description} deletetransaction={deleteTransaction} editetransactions={editetransactions} />
+                return <TransacCard amount={amount} category={category} _id={_id} description={description} deletetransaction={deleteTransaction} editetransactions={editetransactions} type={type}/>
               }
 
             })
           }
 
-        </div> 
+        </div>
         <img src={plus} className='plus-img' onClick={openmodel} />
-
-
+</div>
       </div>
 
 
       <div className={`${modelwrapper}`} ></div>
       <div className={` transaction-model ${modelclass}`}>
         {/* <div className='model-heading'>add your transactions</div> */}
-          <div className='type-section'>
-            <div className={`credeb credit  ${typeclasscredit}`} onClick={typecredit}>Credit</div>
+        <div className='type-section'>
+          <div className={`credeb credit  ${typeclasscredit}`} onClick={typecredit}>Credit</div>
           <div className={`credeb debit  ${typeclassdebit}`} onClick={typedebit}>Debit</div>
         </div>
         <div className='model-feild-con'>
-        <label className='input-label' id='amount'>Amount</label>
-        <input type='text' placeholder='amount' id='amount' className='input-box' value={amount} onChange={(e) => {
-          setAmount(e.target.value)
-        }} />
+          <label className='input-label' id='amount'>Amount</label>
+          <input type='text' placeholder='amount' id='amount' className='input-box' value={amount} onChange={(e) => {
+            setAmount(e.target.value)
+          }} />
         </div>
         {/* <input type='text' placeholder='type' className='input-field' value={type} onChange={(e) => {
           setType(e.target.value)
@@ -351,38 +353,38 @@ export default function Transaction() {
           setCategory(e.target.value)
         }} /> */}
 
-<div className='model-feild-con'>
-  <label htmlFor='category' className='input-label'>Category</label>      
-<select  id='category' value={category} onChange={(e)=>{
-  setCategory(e.target.value)
-}} className='select-field'>
-  <option>select category</option>
-  <option value={'food'}>Food</option>
-  <option value={'shopping'}>Shopping</option>
-  <option value={'education'}>Education</option>
-  <option value={'travel'}>Travel</option>
-  <option value={'entertainment'}>Entertainment</option>
-  <option value={'salary'}>Salary</option>
-  <option value={'business'}>Business</option>
-  <option value={'EMI'}>EMI</option>
-  <option value={'housing'}>Housing</option>
-  <option value={'vehicle'}>Vehicle</option>
-  <option value={'financial expenses'}>Financial Expenses</option>
-  <option value={'investment'}>Investment</option>
-  <option value={'other'}>Other</option>
-</select>
-</div>
-
-<div className='model-feild-con'>
-        <label className='input-label' htmlFor='description'>Description</label>
-        <input type='email' placeholder='description' id='description' className='input-box' value={description} onChange={(e) => {
-          setDescription(e.target.value)
-        }} />
+        <div className='model-feild-con'>
+          <label htmlFor='category' className='input-label'>Category</label>
+          <select id='category' value={category} onChange={(e) => {
+            setCategory(e.target.value)
+          }} className='select-field'>
+            <option>select category</option>
+            <option value={'food'}>Food</option>
+            <option value={'shopping'}>Shopping</option>
+            <option value={'education'}>Education</option>
+            <option value={'travel'}>Travel</option>
+            <option value={'entertainment'}>Entertainment</option>
+            <option value={'salary'}>Salary</option>
+            <option value={'business'}>Business</option>
+            <option value={'EMI'}>EMI</option>
+            <option value={'housing'}>Housing</option>
+            <option value={'vehicle'}>Vehicle</option>
+            <option value={'financial expenses'}>Financial Expenses</option>
+            <option value={'investment'}>Investment</option>
+            <option value={'other'}>Other</option>
+          </select>
         </div>
 
-       
+        <div className='model-feild-con'>
+          <label className='input-label' htmlFor='description'>Description</label>
+          <input type='email' placeholder='description' id='description' className='input-box' value={description} onChange={(e) => {
+            setDescription(e.target.value)
+          }} />
+        </div>
+
+
         <button type='button' className='submit-btn' onClick={closemodel}>submit</button>
-         <button type='button' className='submit-btn' onClick={updatetransactionfuc}>update</button> 
+        <button type='button' className='submit-btn' onClick={updatetransactionfuc}>update</button>
 
       </div>
 

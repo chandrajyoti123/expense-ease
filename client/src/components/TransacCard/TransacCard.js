@@ -21,7 +21,7 @@ import vehicle from './vehicle.png'
 
 // 'food','shopping','education','travel','entertainment',"salary","business","EMI","housing","vehicle","financial expenses","investment","other" 
 
-export default function TransacCard({deletetransaction,_id,amount,category,description,editetransactions}) {
+export default function TransacCard({deletetransaction,_id,amount,category,description,editetransactions,type}) {
  
   const [categoryimg,setCategoryimg]=useState('')
   const setimgtocategory=()=>{
@@ -97,7 +97,7 @@ export default function TransacCard({deletetransaction,_id,amount,category,descr
         </div>
         <div className='transaction-card2'>
           <div className='transaction-amount'>
-         +₹{amount}
+        {type=="credit"?<span className='history-credit'>+ ₹{amount}</span>:<span className='history-debit'>- ₹{amount}</span> }
           </div>
           <div className='category'>{category}</div>
           <div className='transaction-message '> <img src={chat} className='chat-img'/>{description}</div>

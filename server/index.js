@@ -146,14 +146,14 @@ app.get('/api/transaction/:_id',async(req,res)=>{
         data:findcashamt,
         message:"all cash found successfully"
        })
-    })
+                 })
 
  
 
 
 
-connectMongoDB()
+   connectMongoDB()
    const PORT=8080
 app.listen(PORT,()=>{
-    console.log(`server is running in port ${PORT}`)
-})
+      console.log(`server is running in port ${PORT}`)
+  })
