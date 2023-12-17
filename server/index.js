@@ -2,7 +2,9 @@ import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import Transaction from './models/Transaction.js'
+import Amount from './models/CashAmt.js'
 // import getapitransactionbyid from './controllers/TransactionById.js'
+
 
 
 import { postapilogin,postapisingupuser } from './controllers/SingUp.js'
@@ -46,7 +48,7 @@ app.get("/api/transactions",async (req,res)=>{
         message:"all transaction fetched successfully"
     })
 })
-app.get('/api/transactions/:_id',async(req,res)=>{
+ app.get('/api/transactions/:_id',async(req,res)=>{
    
     const {_id}=req.params
     const findtransaction= await Transaction.find({user:{_id:_id}}).populate('user')
@@ -103,13 +105,48 @@ app.get('/api/transaction/:_id',async(req,res)=>{
         })
      }
 
-   })
+    })
 
 
 
     // -------------singup--------------
       app.post('/api/singupusers',postapisingupuser)
        app.post('/api/loginusers',postapilogin)
+
+
+    // ----------------------amount---------------
+
+    app.post('/api/cashamount',async(req,res)=>{
+        const {user, cash}=req.body
+         const newcash=new Amount({
+            user,cash
+         })
+        try{
+            const savedcash=await newcash.save()
+            return res.json({
+               success:true,
+               data:savedcash,
+               message:"cashadded successfully"
+             })
+        }catch(err){
+            return res.json({
+                success:false,
+                message:err.message
+            })
+        }
+    
+         
+    })
+    app.get('/api/cashamount/:_id',async(req,res)=>{
+        const {_id}=req.params
+        const findcashamt= await Amount.find({user:{_id:_id}}).populate('user')
+        
+       return res.json({
+        success:true,
+        data:findcashamt,
+        message:"all cash found successfully"
+       })
+    })
 
  
 

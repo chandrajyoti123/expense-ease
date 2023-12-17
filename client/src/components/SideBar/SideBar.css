@@ -1,21 +1,28 @@
 .sidebar{
   width: 28%;
   height: 100vh;
-  background-color: lightgreen;
+  background-color:	 #faf3d1;
 }
 .userimg{
     width: 120px;
+  
 }
 .user-section{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+ flex-direction: column;
+ margin-top: 50px;
     
 }
 .user-name{
-    font-size: 25px;
-    margin-left: 10px;
+    font-size: 30px;
+   font-weight: bold;
+   text-transform: capitalize;
+   margin-top: 8px;
+
+
 }
 .sidebar ul{
     display: flex;
@@ -25,9 +32,15 @@
 }
 .sidebar ul li{
     list-style: none;
-    font-size: 25px;
+    font-size: 30px;
     margin: 5px 0;
 }
+
 .links{
     text-decoration: none;
+    color: black;
+}
+.side-btn{
+    margin-top: 200px !important;
+    background-color: 	 #f1dc74 !important;
 }

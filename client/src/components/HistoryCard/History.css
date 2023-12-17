@@ -1,0 +1,40 @@
+.recent-history-container{
+    width: 80%;
+  height: 100px;
+  background-color: #f0defd;
+  margin: 20px 0;
+  box-shadow: 0 0 10px 0  #c987f8;
+  display: flex;
+ 
+}
+.history-category{
+width: 70%;
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding-left: 50px;
+}
+.message{
+    font-size: 22px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 5px;
+}
+.history-amount{
+    width: 30%;
+    height: 100%;
+    font-size: 40px;
+    font-weight: 500;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: 50px;
+}
+.history-credit{
+    color: green;
+}
+.history-debit{
+    color: red;
+}

@@ -6,6 +6,7 @@ import Login from './view/Login/Login';
 import Home from './view/Home/Home';
 import Transaction from './view/Transaction/Transaction';
 import Graph from './view/Graph/Graph';
+import SetUpCash from './view/SetUpCash/SetUpCash';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
    {
     path: '/graph',
     element: <Graph />
+  },
+   {
+    path: '/setupcash',
+    element: < SetUpCash/>
   },
 
 
