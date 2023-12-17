@@ -12,6 +12,7 @@ export default function SingUp() {
   const [passwordcon, setPasswordcon] = useState('')
   const singUpPostapi = async () => {
 
+   try{
     const response = await axios.post('/api/singupusers', {
       first_name: firstname,
       last_name: lastname,
@@ -26,6 +27,9 @@ export default function SingUp() {
     } else {
       alert(response?.data?.message)
     }
+   }catch(err){
+    console.log(err)
+   }
 
 
   }
@@ -33,35 +37,7 @@ export default function SingUp() {
 
   return (
     <div>
-      {/* <div className='singup-container'>
-        <div className='signup-model'>
-          <input type='text' placeholder='enter your first name' className='input-field' value={firstname} onChange={(e)=>{
-            setFirstname(e.target.value)
-          }}/>
-          <input type='text' placeholder='enter your  last name' className='input-field' value={lastname} onChange={(e)=>{
-            setLastname(e.target.value)
-          }}/>
-          <input type='email' placeholder='enter your email' className='input-field' value={email} onChange={(e)=>{
-            setEmail(e.target.value)
-          }} />
-          <input type='number' placeholder='enter your phone' className='input-field' value={number} onChange={(e)=>{
-            setNumber(e.target.value)
-          }} />
-          <input type='password' placeholder='enter your password' className='input-field'  value={password} onChange={(e)=>{
-            setPassword(e.target.value)
-          }}/>
-          <input type='password' placeholder='confirm password' className='input-field' value={passwordcon} onChange={(e)=>{
-            setPasswordcon(e.target.value)
-          }} />
-          <button className='sing-up' onClick={singUpPostapi}>sign up</button>
 
-
-
-
-        </div>
-
-
-      </div> */}
 
       <>
         <div className='signup-container'>
@@ -76,7 +52,7 @@ export default function SingUp() {
 
             <div className='model-feild-con'>
               {/* <label className='input-label' htmlFor='last_name'>last name</label> */}
-              <input type='text' placeholder='enter your  last name'  id='last_name' className='input-box' value={lastname} onChange={(e) => {
+              <input type='text' placeholder='enter your  last name' id='last_name' className='input-box' value={lastname} onChange={(e) => {
                 setLastname(e.target.value)
               }} />
             </div>
@@ -107,9 +83,9 @@ export default function SingUp() {
                 setPasswordcon(e.target.value)
               }} />
             </div>
-            <div className='switch'><Link to={'/login'} className='singup-link'>already have an accoutn?</Link> </div>
-            
-            <button type='button' className='submit-btn margin-top'>signup</button>
+            <div className='switch'><Link to={'/login'} className='singup-link'>already have an account?</Link> </div>
+
+            <button type='button' className='submit-btn margin-top' onClick={singUpPostapi}>signup</button>
 
           </div>
 

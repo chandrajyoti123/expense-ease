@@ -5,5 +5,5 @@ export default function Dashboard() {
     <div>
       this is dashboard page
     </div>
-  )
+   )
 }

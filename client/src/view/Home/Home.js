@@ -33,31 +33,52 @@ export default function Home() {
   ];
 
   const [userid, setUserid] = useState()
+  
 
 
   useEffect(() => {
 
-    const response = JSON.parse(localStorage.getItem("exloginuser"))
-    if (response) {
-      setUserid(response._id)
+    if(!(JSON.parse(localStorage.getItem('exloginuser')))){
+
+      if(!(JSON.parse(localStorage.getItem('exsinguser')))){
+        window.location.href='/singup'
+        return
+      
+      } 
+           window.location.href='/login'
     }
+    
+   setUserid((JSON.parse(localStorage.getItem("exloginuser")))._id)
+    
+   
+  
+
+
+   
+
+    
 
 
 
 
   }, [])
+  console.log(userid)
 
   // -------------all transactions-----------------
   const [transactions, setTransactions] = useState([])
   const loadTransaction = async () => {
-    if (!userid) {
-      alert('user not found')
-      return
-    }
+    // if (!userid) {
+    //   alert('user not found')
+    //   return
+    // }
 
-    const response = await axios.get(`/api/transactions/${userid}`)
-    if (response?.data?.data) {
-      setTransactions(response?.data?.data.slice(-4).reverse())
+    try{
+      const response = await axios.get(`/api/transactions/${userid}`)
+      if (response?.data?.data) {
+        setTransactions(response?.data?.data.slice(-4).reverse())
+      }
+    }catch(err){
+      console.log(err)
     }
 
     let totalCredit = 0;
@@ -81,8 +102,9 @@ export default function Home() {
 
   }
   useEffect(() => {
-    loadTransaction();
+   
     // loadgetapicashamt();
+    loadTransaction()
   }, [userid])
   console.log(userid)
   console.log(transactions)

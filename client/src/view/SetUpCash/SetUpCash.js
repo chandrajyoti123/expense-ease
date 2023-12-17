@@ -10,19 +10,21 @@ export default function SetUpCash() {
       const response=JSON.parse(localStorage.getItem("exloginuser"))
       setUserid(response._id)
     }
-    useEffect(()=>{
+     useEffect(()=>{
       loaduserfromlclStr();
       postapicashamt()
+      
+
      },[])
 
     const postapicashamt=async()=>{
-      if(!userid){
-        alert("user not found")
-        return
-      }
-      if(!cashamt){
-        alert("enter amount")
-      }
+      // if(!userid){
+      //   alert("user not found")
+      //   return
+      // }
+      // if(!cashamt){
+      //   alert("enter amount")
+      // }
       try{
         const response=await axios.post('/api/cashamount',{
           user:userid,cash:cashamt
@@ -30,6 +32,7 @@ export default function SetUpCash() {
         if(response?.data?.data){
           alert("cash added successfully")
           window.location.href='/'
+          localStorage.setItem("excash",JSON.stringify(response?.data?.data))
         }else{
           alert(response?.data?.message)
         }
@@ -43,11 +46,11 @@ export default function SetUpCash() {
     <div className='setupcash-container'>
      <div className='setupcash-subcon'>
      <div className='heading'>set up your cash balance</div>
-     <div className='text'>how much cash have in your physicl wallet</div>
+     <div className='text'>how much cash do you have in your physical wallet</div>
      <input type='text' placeholder='NIR' id='first_name' className='input-box-cash' value={cashamt} onChange={(e) => {
                 setCashamt(e.target.value)
               }} />
-              <button type='button' className='submit-btn margin-top cash-btn' onClick={postapicashamt}>signup</button>
+              <button type='button' className='submit-btn margin-top cash-btn' onClick={postapicashamt}>Done</button>
      </div>
     </div>
   )

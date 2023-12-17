@@ -169,7 +169,7 @@ export default function Transaction() {
     } catch (err) {
       console.log(err)
     }
-    loadTransaction()
+    // loadTransaction()
   }
 
 

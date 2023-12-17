@@ -8,6 +8,7 @@ export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const loginPostapi=async()=>{
+   try{
     const response=await axios.post('/api/loginusers',{
       email:email,
       password:password
@@ -15,33 +16,24 @@ export default function Login() {
     if(response?.data?.data){
       localStorage.setItem('exloginuser',JSON.stringify(response.data.data))
       alert("you are logined successfully")
-      window.location.href='/'
+      if(JSON.parse(localStorage.getItem('excash'))){
+        window.location.href='/'
+        return
+      
+      } else{
+        window.location.href='/setupcash'
+      }
+     
     }else{
      alert(response?.data?.message)
     }
+   }catch(err){
+    console.log(err)
+   }
   }
   return (
     <div>
-    {/* <div className='singup-container'>
-      <div className='signup-model'>
-        
-        <input type='email' placeholder='enter your email' className='input-field' value={email} onChange={(e)=>{
-          setEmail(e.target.value)
-        }} />
-       
-        <input type='password' placeholder='enter your password' className='input-field'  value={password} onChange={(e)=>{
-          setPassword(e.target.value)
-        }}/>
-       
-        <button className='sing-up' onClick={loginPostapi}>login</button>
-
-
-
-
-      </div>
-
-
-    </div> */}
+    
     <div className='login-container'>
       <div className='login-sub-container'>
       <div className='heading'>login to your account</div>
@@ -60,8 +52,8 @@ export default function Login() {
               setPassword(e.target.value)
             }} />
           </div>
-         <div className='switch'><Link to={'/singup'} className='singup-link'>Don't have any accoutn?</Link> </div>
-          <button type='button' className='submit-btn margin-top'>Login</button>
+         <div className='switch'><Link to={'/singup'} className='singup-link'>Don't have any account?</Link> </div>
+          <button type='button' className='submit-btn margin-top' onClick={loginPostapi}>Login</button>
 
       
 

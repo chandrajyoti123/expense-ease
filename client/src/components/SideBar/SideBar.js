@@ -13,6 +13,11 @@ export default function SideBar() {
   useEffect(()=>{
     loaduserfromlclStr();
   },[])
+  const logout=()=>{
+    localStorage.removeItem("exloginuser")
+    window.location.reload()
+    
+  }
   // console.log(user)
   return (
     <div className='sidebar'>
@@ -28,7 +33,7 @@ export default function SideBar() {
         </ul>
 
 
-        <button type='button' className='submit-btn margin-top cash-btn side-btn'>signup</button>
+        <button type='button' className='submit-btn margin-top cash-btn side-btn' onClick={logout}>logout</button>
       
     </div>
   )
