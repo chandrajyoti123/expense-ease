@@ -40,12 +40,7 @@ export default function Home() {
 
 
   useEffect(() => {
-    loaduserfromlclStr11();
-    if (!(JSON.parse(localStorage.getItem('excheckpass')))){
-      setModelclass('postmodelhome')
-      setModelwrapper('model-wrapperhome')
-      document.body.style.overflowY = "hidden"
-    }
+   
 
 
    
@@ -58,6 +53,13 @@ export default function Home() {
         }
         window.location.href = '/login'
 
+      }
+
+      loaduserfromlclStr11();
+      if (!(JSON.parse(localStorage.getItem('excheckpass')))){
+        setModelclass('postmodelhome')
+        setModelwrapper('model-wrapperhome')
+        document.body.style.overflowY = "hidden"
       }
   
 
