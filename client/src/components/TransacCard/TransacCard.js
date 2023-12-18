@@ -4,7 +4,7 @@ import './TransacCard.css'
 import chat from './chat.png'
 import trash from './trash.png'
 import edit from './edit.png'
-import date from './date.png'
+import dateimg from './date.png'
 
 import business from './business.png'
 import home from './home.png'
@@ -21,7 +21,7 @@ import vehicle from './vehicle.png'
 
 // 'food','shopping','education','travel','entertainment',"salary","business","EMI","housing","vehicle","financial expenses","investment","other" 
 
-export default function TransacCard({deletetransaction,_id,amount,category,description,editetransactions,type}) {
+export default function TransacCard({deletetransaction,_id,amount,category,description,editetransactions,type,createdat}) {
  
   const [categoryimg,setCategoryimg]=useState('')
   const setimgtocategory=()=>{
@@ -83,6 +83,16 @@ export default function TransacCard({deletetransaction,_id,amount,category,descr
   // };
     
 // --------get by id----------------
+const dateObject = new Date(createdat);
+const date = dateObject.getDate();
+  
+const [months,setMonths]=useState([
+  "Jan",'Feb',"Mar","Apr","May","June","July","Aug","Sep","Oct","Nov","Dec"
+
+])
+
+const month = dateObject.getMonth();
+const year = dateObject.getFullYear();
 
 
   return (
@@ -112,7 +122,7 @@ export default function TransacCard({deletetransaction,_id,amount,category,descr
             editetransactions(_id)
           }}/></spna>
           </div>
-          <div className='date-section'><img className='date-img' src={date}/>10 dec 2023  </div>
+          <div className='date-section'><img className='date-img' src={dateimg}/>{date} {months[month]} {year} </div>
 
         </div>
         

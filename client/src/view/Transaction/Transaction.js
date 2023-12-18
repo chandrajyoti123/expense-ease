@@ -20,8 +20,8 @@ export default function Transaction() {
   // console.log(userid)
   const loadTransaction = async () => {
     try {
-    //  const user= JSON.parse(localStorage.getItem('exloginuser'))
-      const response = await axios.get(`/api/transactions/657fe1e580bd9bf7ea39b4fd`)
+   
+        const response = await axios.get(`/api/transactions/657fe1e580bd9bf7ea39b4fd`)
       if (response?.data?.data) {
         setTransactions(response?.data?.data)
       }
@@ -66,10 +66,7 @@ export default function Transaction() {
 
   }
   const closemodel = async (_id) => {
-    // if(!userid){
-    //   alert("user is not found")
-    //   return
-    // }
+  
     if (!amount) {
       alert("please enter amount")
       return
@@ -113,6 +110,7 @@ export default function Transaction() {
 
   }
   const close_model_global = () => {
+    localStorage.removeItem("edittran")
     setUserid('')
     setAmount('')
     setType('')
@@ -120,7 +118,9 @@ export default function Transaction() {
     setDescription('')
     setModelclass('displaynone')
     setModelwrapper('')
+  
     document.body.style.overflowY = "scroll"
+    
 
 
   }
@@ -190,6 +190,14 @@ export default function Transaction() {
         setCategory(category)
         setDescription(description)
         setTransactionid(_id)
+        if(type=="credit"){
+          setTypeclasscredit("type-bold")
+          setTypeclassdebit("")
+
+         }else{
+          setTypeclassdebit("type-bold")
+          setTypeclasscredit("")
+         }
         
          localStorage.setItem("edittran",JSON.stringify("edit"))
 
@@ -210,10 +218,7 @@ export default function Transaction() {
     console.log(userid)
   console.log(transactionid)
   const updatetransactionfuc = async () => {
-    if (!userid) {
-      alert("user not found")
-      return
-    }
+   
     if (!amount) {
       alert("enter amount")
       return
@@ -302,21 +307,21 @@ export default function Transaction() {
 
         </div>
 
-        <div className='sub-container1'>
+        <div className='sub-container1 margin-top'>
         <div className={`all-transaction ${alltran}`} >
           {
             transactions.map((transaction, i) => {
-              const { amount, category, description, _id ,type} = transaction
-              return <TransacCard amount={amount} category={category} description={description} _id={_id} deletetransaction={deleteTransaction} editetransactions={editetransactions} type={type} />
+              const { amount, category, description, _id ,type,createdAt} = transaction
+              return <TransacCard amount={amount} category={category} description={description} _id={_id} deletetransaction={deleteTransaction} editetransactions={editetransactions} type={type} createdat={createdAt}/>
             })
           }
         </div>
         <div className={`credited-transaction ${credittran}`} >
             {
             transactions.map((transaction, i) => {
-              const { amount, category, description, _id, type } = transaction
+              const { amount, category, description, _id, type,createdAt } = transaction
               if (type == "credit") {
-                  return <TransacCard amount={amount} category={category} description={description} _id={_id} deletetransaction={deleteTransaction} editetransactions={editetransactions} type={type} />
+                  return <TransacCard amount={amount} category={category} description={description} _id={_id} deletetransaction={deleteTransaction} editetransactions={editetransactions} type={type} createdat={createdAt} />
               }
             })
           }
@@ -325,9 +330,9 @@ export default function Transaction() {
          <div className={`debited-transaction ${debit} `}>
           {
             transactions.map((transaction, i) => {
-              const { amount, category, description, type , _id} = transaction
+              const { amount, category, description, type , _id,createdAt} = transaction
               if (type == "debit") {
-                return <TransacCard amount={amount} category={category} _id={_id} description={description} deletetransaction={deleteTransaction} editetransactions={editetransactions} type={type}/>
+                return <TransacCard amount={amount} category={category} _id={_id} description={description} deletetransaction={deleteTransaction} editetransactions={editetransactions} type={type} createdat={createdAt}/>
               }
 
             })
@@ -341,6 +346,7 @@ export default function Transaction() {
 
       <div className={`${modelwrapper}`} onClick={close_model_global}></div>
       <div className={` transaction-model ${modelclass}`}>
+        <div className='model-sub-con'>
         {/* <div className='model-heading'>add your transactions</div> */}
         <div className='type-section'>
           <div className={`credeb credit  ${typeclasscredit}`} onClick={typecredit}>Credit</div>
@@ -393,7 +399,7 @@ export default function Transaction() {
         </button>
         {/* <button type='button' className='submit-btn' onClick={updatetransactionfuc}>update</button> */}
       
-
+        </div>
       </div>
 
 

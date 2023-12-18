@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import Transaction from './models/Transaction.js'
 import Amount from './models/CashAmt.js'
+import Password from './models/Password.js'
 // import getapitransactionbyid from './controllers/TransactionById.js'
 import path from "path"
 
@@ -27,7 +28,7 @@ const connectMongoDB = async () => {
     const transaction = new Transaction({
         user, amount, type, category, description
       })
-      try {
+        try {
         const savedtransaction = await transaction.save();
         return res.json({
             success: true,
@@ -115,7 +116,7 @@ app.put('/api/transaction/:_id', async (req, res) => {
 
 // -------------singup--------------
 app.post('/api/singupusers', postapisingupuser)
-  app.post('/api/loginusers', postapilogin)
+ app.post('/api/loginusers', postapilogin)
 
 
 // ----------------------amount---------------
@@ -141,7 +142,7 @@ app.post('/api/cashamount', async (req, res) => {
 
 
 })
-  app.get('/api/cashamount/:_id', async (req, res) => {
+ app.get('/api/cashamount/:_id', async (req, res) => {
     const { _id } = req.params
     const findcashamt = await Amount.find({ user: { _id: _id } }).populate('user')
 
@@ -150,7 +151,42 @@ app.post('/api/cashamount', async (req, res) => {
         data: findcashamt,
         message: "all cash found successfully"
     })
-  })
+})
+
+// -----------------password------------------
+
+app.post('/api/passwords', async (req, res) => {
+    const { user, password } = req.body
+    const newpassword = new Password({
+        user, password
+    })
+    try {
+        const savedpassword = await newpassword.save()
+        return res.json({
+            success: true,
+            data: savedpassword,
+            message: "password set successfully"
+        })
+       } catch (err) {
+        return res.json({
+            success: false,
+            message: err.message
+        })
+    }
+
+
+})
+
+  app.get('/api/passwords/:_id', async (req, res) => {
+    const { _id } = req.params
+    const findPassword = await Password.find({ user: { _id: _id } }).populate('user')
+
+    return res.json({
+        success: true,
+        data:findPassword,
+        message: "password find successfully"
+    })
+})
 
 
   if (process.env.NODE_ENV === "production") {

@@ -3,7 +3,7 @@ import './SetUpCash.css'
 import axios from 'axios'
 
 
-export default function SetUpCash() {
+  export default function SetUpCash() {
     const [cashamt,setCashamt]=useState('')
     const [userid,setUserid]=useState()
     const loaduserfromlclStr=()=>{
@@ -31,7 +31,7 @@ export default function SetUpCash() {
         })
         if(response?.data?.data){
           alert("cash added successfully")
-          window.location.href='/'
+          window.location.href='/password'
           localStorage.setItem("excash",JSON.stringify(response?.data?.data))
         }else{
           alert(response?.data?.message)
@@ -52,6 +52,7 @@ export default function SetUpCash() {
               }} />
               <button type='button' className='submit-btn margin-top cash-btn' onClick={postapicashamt}>Done</button>
      </div>
+     
     </div>
   )
 }

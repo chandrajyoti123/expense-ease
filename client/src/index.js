@@ -7,6 +7,8 @@ import Home from './view/Home/Home';
 import Transaction from './view/Transaction/Transaction';
 import Graph from './view/Graph/Graph';
 import SetUpCash from './view/SetUpCash/SetUpCash';
+import PasswordSet from './view/PasswordSet/PasswordSet';
+import CheckPass from './view/CheckPass/CheckPass';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
    {
     path: '/setupcash',
     element: < SetUpCash/>
+  },
+  {
+    path: '/password',
+    element: <PasswordSet/>
+  },
+  {
+    path: '/checkpass',
+    element: <CheckPass/>
   },
 
 

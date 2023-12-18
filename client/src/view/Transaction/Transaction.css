@@ -20,18 +20,21 @@
     height: auto;
        padding-left: 5%;
        padding-bottom: 5%;
+       padding-top: 20px;
 
 }
+.margin-top{
+    margin-top: 50px !important;
+}
 .navhead{
-    width:100%;
+    width:73%;
     height: 60px;
     /* background-color: lightpink; */
     display: flex;
     justify-content: space-between;
-    position: sticky;
-    z-index: 100;
+    position: fixed;
     top: 0;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 .navhead-link{
     width: 33%;
@@ -77,16 +80,27 @@
 }
 
 .postmodel{
-    width: 30%;
-    height: auto;
+    width: 40%;
+    height: 500px;
     background-color: white;
     position:fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
-    z-index: 10000;
-    padding: 20px 0 20px 0;
+    transform: translate(-15%,-50%);
+    z-index: 10000 !important;
+  
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.model-sub-con{
+    width:90% ;
+    height: auto;
+    padding: 20px 0 20px 0;
+  
+    /* background-color: #fcf7de; */
 }
 .model-heading{
     font-size: 30px;
@@ -101,6 +115,7 @@
    
     display: flex;
     margin-bottom: 25px;
+    border-radius: 15px;
 }
 .credeb{
     width: 50%;
@@ -109,7 +124,9 @@
     justify-content: center;
     align-items: center;
     font-size: 20px;
-    cursor: pointer;
+    cursor: pointer;  
+    /* border-radius: 15px; */
+    z-index: 1000;
   
 }
 .credit{
@@ -184,6 +201,6 @@
     right: 0;
     bottom: 0;
     top: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
 
 }
