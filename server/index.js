@@ -22,12 +22,12 @@ const connectMongoDB = async () => {
 
 }
 
-app.post("/api/transactions", async (req, res) => {
+    app.post("/api/transactions", async (req, res) => {
     const { user, amount, type, category, description } = req.body;
     const transaction = new Transaction({
         user, amount, type, category, description
-    })
-    try {
+      })
+      try {
         const savedtransaction = await transaction.save();
         return res.json({
             success: true,

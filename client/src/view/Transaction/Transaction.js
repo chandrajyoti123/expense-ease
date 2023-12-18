@@ -4,7 +4,7 @@ import './Transaction.css'
 import axios from 'axios'
 import plus from './plus.png'
 
-import TransacCard from '../../components/TransacCard/TransacCard'
+ import TransacCard from '../../components/TransacCard/TransacCard'
 
 
 
@@ -13,18 +13,19 @@ export default function Transaction() {
   const [userid, setUserid] = useState('')
   const [creditAmt, setCreditAmt] = useState('');
   const [debitAmt, setDebitAmt] = useState('');
-  const loadlogineduser = () => {
-    const response = JSON.parse(localStorage.getItem('exloginuser'))
-    setUserid(response._id)
-  }
-  console.log(userid)
+  // const loadlogineduser = () => {
+  //   const response = 
+  //   setUserid(response._id)
+  // }
+  // console.log(userid)
   const loadTransaction = async () => {
     try {
-      const response = await axios.get(`/api/transactions/${userid}`)
+    //  const user= JSON.parse(localStorage.getItem('exloginuser'))
+      const response = await axios.get(`/api/transactions/657fe1e580bd9bf7ea39b4fd`)
       if (response?.data?.data) {
         setTransactions(response?.data?.data)
       }
-    } catch (error) {
+     } catch (error) {
       console.log(error)
     }
 
@@ -41,7 +42,7 @@ export default function Transaction() {
     // setDebitAmt(totalDebit);
   }
   useEffect(() => {
-    loadlogineduser()
+    // loadlogineduser()
     loadTransaction()
   }, [])
   // useEffect(() => {
@@ -87,7 +88,7 @@ export default function Transaction() {
 
     try {
       const response = await axios.post("/api/transactions", {
-        user: userid,
+        user: "657fe1e580bd9bf7ea39b4fd",
         amount: amount,
         type: type,
         category: category,
@@ -107,22 +108,22 @@ export default function Transaction() {
       )
     } catch (err) {
       console.log(err)
-    }
+        }
 
 
   }
-  // const close_model_global = () => {
-  //   setUserid('')
-  //   setAmount('')
-  //   setType('')
-  //   setCategory('')
-  //   setDescription('')
-  //   setModelclass('displaynone')
-  //   setModelwrapper('')
-  //   document.body.style.overflowY = "scroll"
+  const close_model_global = () => {
+    setUserid('')
+    setAmount('')
+    setType('')
+    setCategory('')
+    setDescription('')
+    setModelclass('displaynone')
+    setModelwrapper('')
+    document.body.style.overflowY = "scroll"
 
 
-  // }
+  }
 
 
   const [alltran, setAlltran] = useState('')
@@ -189,6 +190,8 @@ export default function Transaction() {
         setCategory(category)
         setDescription(description)
         setTransactionid(_id)
+        
+         localStorage.setItem("edittran",JSON.stringify("edit"))
 
       }
 
@@ -198,14 +201,14 @@ export default function Transaction() {
     }
   }
 
-  // useEffect(() => {
-  //   const response = JSON.parse(localStorage.getItem('edittran'))
-  //   setIsedit(response)
+  useEffect(() => {
+    const response = JSON.parse(localStorage.getItem('edittran'))
+    setIsedit(response)
 
-  // }, [transactionid])
+  }, [transactionid])
 
-  //   console.log(userid)
-  // console.log(transactionid)
+    console.log(userid)
+  console.log(transactionid)
   const updatetransactionfuc = async () => {
     if (!userid) {
       alert("user not found")
@@ -246,8 +249,11 @@ export default function Transaction() {
         setModelwrapper('')
         document.body.style.overflowY = "scroll"
         //  loadTransaction()
-        window.location.reload()
+        localStorage.removeItem("edittran")
         alert("transaction updated successfully")
+        
+        window.location.reload()
+
 
       } else {
         alert(response?.data?.data)
@@ -306,7 +312,7 @@ export default function Transaction() {
           }
         </div>
         <div className={`credited-transaction ${credittran}`} >
-          {
+            {
             transactions.map((transaction, i) => {
               const { amount, category, description, _id, type } = transaction
               if (type == "credit") {
@@ -333,7 +339,7 @@ export default function Transaction() {
       </div>
 
 
-      <div className={`${modelwrapper}`} ></div>
+      <div className={`${modelwrapper}`} onClick={close_model_global}></div>
       <div className={` transaction-model ${modelclass}`}>
         {/* <div className='model-heading'>add your transactions</div> */}
         <div className='type-section'>
@@ -382,9 +388,11 @@ export default function Transaction() {
           }} />
         </div>
 
-
-        <button type='button' className='submit-btn' onClick={closemodel}>submit</button>
-        <button type='button' className='submit-btn' onClick={updatetransactionfuc}>update</button>
+        <button type='button' className='submit-btn' onClick={isedit?updatetransactionfuc:closemodel}>
+          {isedit?<span>Update</span>:<span>Add</span>}
+        </button>
+        {/* <button type='button' className='submit-btn' onClick={updatetransactionfuc}>update</button> */}
+      
 
       </div>
 

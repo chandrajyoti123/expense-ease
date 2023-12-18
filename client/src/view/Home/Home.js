@@ -22,10 +22,11 @@ export default function Home() {
   const [creditAmt, setCreditAmt] = useState('');
   const [debitAmt, setDebitAmt] = useState('');
   const [cashamtdata, setCashamtdata] = useState('')
-  const [totoalamount, setTotalamount] = useState('')
+
+   const [alltransactions,setAlltransactions]=useState([])
 
 
-  const data = [
+    const data = [
     { name: "credit", amount: creditAmt },
     { name: "debit", amount: debitAmt },
     // { name: "Twiter", users: 1000000000 },
@@ -48,7 +49,7 @@ export default function Home() {
            window.location.href='/login'
     }
     
-   setUserid((JSON.parse(localStorage.getItem("exloginuser")))._id)
+  //  setUserid((JSON.parse(localStorage.getItem("exloginuser")))._id)
     
    
   
@@ -73,9 +74,11 @@ export default function Home() {
     // }
 
     try{
-      const response = await axios.get(`/api/transactions/${userid}`)
+      const response = await axios.get(`/api/transactions/657fe1e580bd9bf7ea39b4fd`)
       if (response?.data?.data) {
         setTransactions(response?.data?.data.slice(-4).reverse())
+        setAlltransactions(response?.data?.data)
+
       }
     }catch(err){
       console.log(err)
@@ -83,41 +86,43 @@ export default function Home() {
 
     let totalCredit = 0;
     let totalDebit = 0;
-    // let totalmoney=cashamtdata.cash
-    transactions.forEach((tranasaction) => {
+   
+    alltransactions.forEach((tranasaction) => {
 
-      if (tranasaction.type === "credit") {
+         if (tranasaction.type === "credit") {
         totalCredit += tranasaction.amount;
-        // totalmoney+=transactions.amount
+       
 
       } else {
         totalDebit += tranasaction.amount;
-        // totalmoney-=tranasaction.amount
+       
       }
-    });
-    setCreditAmt(totalCredit);
-    setDebitAmt(totalDebit);
-    // setTotalamount(totalmoney)
+     });
+      setCreditAmt(totalCredit);
+         setDebitAmt(totalDebit);
+    
 
 
   }
+    console.log(creditAmt)
+  console.log(debitAmt)
   useEffect(() => {
    
-    // loadgetapicashamt();
+    loadgetapicashamt();
     loadTransaction()
   }, [userid])
-  console.log(userid)
-  console.log(transactions)
+  // console.log(userid)
+  // console.log(transactions)
 
 
   // --------------get cash------------
 
-  //    const loadgetapicashamt=async()=>{
-  //     const response=await axios.get(`/api/cashamount/${userid}`)
-  //     if(response?.data?.data){
-  //       setCashamtdata(response?.data?.data[0])
-  //     }
-  // } 
+       const loadgetapicashamt=async()=>{
+      const response=await axios.get(`/api/cashamount/657fe1e580bd9bf7ea39b4fd`)
+      if(response?.data?.data){
+        setCashamtdata((response?.data?.data[0]).cash)
+      }
+  } 
   //    console.log(cashamtdata.cash)
 
 
@@ -163,9 +168,12 @@ export default function Home() {
           </div>
 
           <div className='transaction-amount-section'>
-            <AmountCard type={"credit"} heading={"Total Income"} amount={creditAmt} />
-            <AmountCard type={"debit"} heading={"Total Expenses"} amount={debitAmt} />
-
+            <AmountCard type={"total"} heading={"Total balance"} amount={cashamtdata+creditAmt-debitAmt} />
+            <AmountCard type={"credit"} heading={"Total Credit"} amount={creditAmt} />
+            <AmountCard type={"debit"} heading={"Total Debit"} amount={debitAmt} />
+          
+          
+          
           </div>
           <div>
 
