@@ -13,15 +13,16 @@ export default function Transaction() {
   const [userid, setUserid] = useState('')
   const [creditAmt, setCreditAmt] = useState('');
   const [debitAmt, setDebitAmt] = useState('');
-  // const loadlogineduser = () => {
-  //   const response = 
-  //   setUserid(response._id)
-  // }
-  // console.log(userid)
-  const loadTransaction = async () => {
+  const loadlogineduser = async() => {
+    const response =JSON.parse(localStorage.getItem("exloginuser"))
+   setUserid(response._id)
+  }
+
+ 
+    const loadTransaction = async () => {
     try {
-   
-        const response = await axios.get(`/api/transactions/657fe1e580bd9bf7ea39b4fd`)
+ 
+        const response = await axios.get(`/api/transactions`)
       if (response?.data?.data) {
         setTransactions(response?.data?.data)
       }
@@ -42,7 +43,10 @@ export default function Transaction() {
     // setDebitAmt(totalDebit);
   }
   useEffect(() => {
-    // loadlogineduser()
+    if (!(JSON.parse(localStorage.getItem('excheckpass')))){
+     window.location.href='/'
+    }
+    loadlogineduser();
     loadTransaction()
   }, [])
   // useEffect(() => {
@@ -85,7 +89,7 @@ export default function Transaction() {
 
     try {
       const response = await axios.post("/api/transactions", {
-        user: "657fe1e580bd9bf7ea39b4fd",
+        user:userid,
         amount: amount,
         type: type,
         category: category,
@@ -111,7 +115,7 @@ export default function Transaction() {
   }
   const close_model_global = () => {
     localStorage.removeItem("edittran")
-    setUserid('')
+   
     setAmount('')
     setType('')
     setCategory('')
@@ -170,7 +174,7 @@ export default function Transaction() {
     } catch (err) {
       console.log(err)
     }
-    // loadTransaction()
+    loadTransaction()
   }
 
 
@@ -184,7 +188,7 @@ export default function Transaction() {
 
       if (response?.data?.data) {
         const { _id, user, amount, type, category, description } = response?.data?.data
-        setUserid(user)
+        
         setAmount(amount)
         setType(type)
         setCategory(category)
@@ -245,7 +249,7 @@ export default function Transaction() {
       })
 
       if (response?.data?.data) {
-        setUserid('')
+       
         setAmount('')
         setType('')
         setCategory('')
@@ -257,7 +261,8 @@ export default function Transaction() {
         localStorage.removeItem("edittran")
         alert("transaction updated successfully")
         
-        window.location.reload()
+        // window.location.reload()
+        loadTransaction()
 
 
       } else {
@@ -311,18 +316,24 @@ export default function Transaction() {
         <div className={`all-transaction ${alltran}`} >
           {
             transactions.map((transaction, i) => {
-              const { amount, category, description, _id ,type,createdAt} = transaction
+              const { amount, category, description, _id ,type,createdAt,user} = transaction
+              if(user._id==userid){
+                
               return <TransacCard amount={amount} category={category} description={description} _id={_id} deletetransaction={deleteTransaction} editetransactions={editetransactions} type={type} createdat={createdAt}/>
+              }
+             
             })
           }
         </div>
         <div className={`credited-transaction ${credittran}`} >
             {
             transactions.map((transaction, i) => {
-              const { amount, category, description, _id, type,createdAt } = transaction
+              const { amount, category, description, _id, type,createdAt,user } = transaction
               if (type == "credit") {
+                if(user._id==userid){
                   return <TransacCard amount={amount} category={category} description={description} _id={_id} deletetransaction={deleteTransaction} editetransactions={editetransactions} type={type} createdat={createdAt} />
-              }
+                }
+                }
             })
           }
 
@@ -330,9 +341,11 @@ export default function Transaction() {
          <div className={`debited-transaction ${debit} `}>
           {
             transactions.map((transaction, i) => {
-              const { amount, category, description, type , _id,createdAt} = transaction
+              const { amount, category, description, type , _id,createdAt,user} = transaction
               if (type == "debit") {
+                if(user._id==userid){
                 return <TransacCard amount={amount} category={category} _id={_id} description={description} deletetransaction={deleteTransaction} editetransactions={editetransactions} type={type} createdat={createdAt}/>
+                }
               }
 
             })

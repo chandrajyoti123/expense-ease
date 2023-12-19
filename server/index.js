@@ -23,7 +23,7 @@ const connectMongoDB = async () => {
 
 }
 
-    app.post("/api/transactions", async (req, res) => {
+      app.post("/api/transactions", async (req, res) => {
     const { user, amount, type, category, description } = req.body;
     const transaction = new Transaction({
         user, amount, type, category, description
@@ -42,7 +42,7 @@ const connectMongoDB = async () => {
         })
     }
 })
-app.get("/api/transactions", async (req, res) => {
+   app.get("/api/transactions", async (req, res) => {
     const alltransaction = await Transaction.find().populate('user');
     return res.json({
         success: true,
@@ -81,7 +81,7 @@ app.get('/api/transaction/:_id', async (req, res) => {
         success: true,
         data: foundtransaction,
         message: "data got successfully "
-    })
+     })
 })
 
 app.put('/api/transaction/:_id', async (req, res) => {

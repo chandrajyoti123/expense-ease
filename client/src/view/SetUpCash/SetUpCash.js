@@ -12,19 +12,13 @@ import axios from 'axios'
     }
      useEffect(()=>{
       loaduserfromlclStr();
-      postapicashamt()
+    
       
 
      },[])
 
     const postapicashamt=async()=>{
-      // if(!userid){
-      //   alert("user not found")
-      //   return
-      // }
-      // if(!cashamt){
-      //   alert("enter amount")
-      // }
+     
       try{
         const response=await axios.post('/api/cashamount',{
           user:userid,cash:cashamt
@@ -36,21 +30,21 @@ import axios from 'axios'
         }else{
           alert(response?.data?.message)
         }
-      }catch(err){
+        }catch(err){
         console.log(err)
-      }
+        }
     }
    
 
   return (
     <div className='setupcash-container'>
      <div className='setupcash-subcon'>
-     <div className='heading'>set up your cash balance</div>
-     <div className='text'>how much cash do you have in your physical wallet</div>
-     <input type='text' placeholder='NIR' id='first_name' className='input-box-cash' value={cashamt} onChange={(e) => {
+     <div className='heading'>Set up your cash balance</div>
+     <div className='text'>How much cash do you have in your physical wallet</div>
+     <input type='number' placeholder='NIR' id='first_name' className='input-box-cash' value={cashamt} onChange={(e) => {
                 setCashamt(e.target.value)
               }} />
-              <button type='button' className='submit-btn margin-top cash-btn' onClick={postapicashamt}>Done</button>
+     <button type='button' className='submit-btn margin-top cash-btn' onClick={postapicashamt}>Done</button>
      </div>
      
     </div>

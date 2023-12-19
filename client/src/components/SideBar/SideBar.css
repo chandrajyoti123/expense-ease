@@ -1,7 +1,10 @@
 .sidebar{
-  width: 28%;
+  width: 26%;
   height: 100vh;
   background-color:	 #faf3d1;
+  border-radius: 20px;
+  box-shadow:  0 0 10px 2px  #f2e18c;
+
 }
 .userimg{
     width: 120px;
@@ -41,6 +44,26 @@
     color: black;
 }
 .side-btn{
-    margin-top: 200px !important;
-    background-color: 	 #f1dc74 !important;
+    
+    width: 120px;
+    height: 45px;
+    display: block;
+
+    border: none;
+    border-radius: 10px;
+    background-color:  #f1dc74;
+    box-shadow: 0 0 10px 3px 	 #edd145;
+    margin: 250px auto;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    
+  
+    
+}
+
+.logout-img{
+    width: 60px;
+    display:block;
+    margin: 250px auto ;
 }

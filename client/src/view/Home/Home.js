@@ -25,17 +25,22 @@ export default function Home() {
   const [cashamtdata, setCashamtdata] = useState('')
 
   const [alltransactions, setAlltransactions] = useState([])
+  const [userid, setUserid] = useState()
+  const loadlogineduser = async() => {
+    const response =JSON.parse(localStorage.getItem("exloginuser"))
+   setUserid(response._id)
+  }
 
 
-  const data = [
-    { name: "credit", amount: creditAmt },
-    { name: "debit", amount: debitAmt },
+   const data = [
+      { name: "credit", amount: creditAmt?creditAmt:50 },
+    { name: "debit", amount: debitAmt?debitAmt:50 },
     // { name: "Twiter", users: 1000000000 },
     // { name: "Telegram", users: 500000000 },
   ];
 
 
-  const [userid, setUserid] = useState()
+ 
      
 
 
@@ -61,6 +66,8 @@ export default function Home() {
         setModelwrapper('model-wrapperhome')
         document.body.style.overflowY = "hidden"
       }
+
+      loadlogineduser()
   
 
 
@@ -90,7 +97,7 @@ export default function Home() {
     // }
 
     try {
-      const response = await axios.get(`/api/transactions/657fe1e580bd9bf7ea39b4fd`)
+      const response = await axios.get(`/api/transactions`)
       if (response?.data?.data) {
         setTransactions(response?.data?.data.slice(-4).reverse())
         setAlltransactions(response?.data?.data)
@@ -104,7 +111,9 @@ export default function Home() {
     let totalDebit = 0;
 
     alltransactions.forEach((tranasaction) => {
+      const {user}=tranasaction
 
+    if(user._id==userid){
       if (tranasaction.type === "credit") {
         totalCredit += tranasaction.amount;
 
@@ -113,6 +122,7 @@ export default function Home() {
         totalDebit += tranasaction.amount;
 
       }
+    }
     });
     setCreditAmt(totalCredit);
     setDebitAmt(totalDebit);
@@ -222,13 +232,16 @@ const checkpasswordfun=()=>{
           </div>
           <div>
           </div>
-          <div className='recent-history'>
+              <div className='recent-history'>
             <div className='main-heading'>Recent History</div>
             {
               transactions.map((transaction, i) => {
-                const { amount, category, type, description, _id } = transaction
-
+                const { amount, category, type, description, _id,user } = transaction
+              if(user._id==userid){
                 return <HistoryCard amount={amount} category={category} description={description} type={type} />
+              }
+
+               
               })
             }
           </div>

@@ -3,6 +3,7 @@ import './SideBar.css'
 import userimg from './man.png'
 import { Link} from 'react-router-dom'
 import { useState } from 'react'
+import logout1 from './logout.png'
 
 export default function SideBar() {
   const [user ,setUser]=useState('')
@@ -32,8 +33,8 @@ export default function SideBar() {
             {/* <li><Link to={''}  className='links'>balance</Link> </li> */}
         </ul>
 
-
-        <button type='button' className='submit-btn margin-top cash-btn side-btn' onClick={logout}>logout</button>
+   <img className='logout-img' src={logout1}/>
+        {/* <button type='button' className=' side-btn' onClick={logout}>logout</button> */}
       
     </div>
   )
