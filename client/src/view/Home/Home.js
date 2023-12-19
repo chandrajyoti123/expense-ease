@@ -6,6 +6,7 @@ import axios from 'axios'
 import HistoryCard from '../../components/HistoryCard/HistoryCard'
 import AmountCard from '../../components/AmountCard/AmountCard'
 import lock from './lock.png'
+
 import {
   PieChart,
   Pie,
@@ -20,76 +21,15 @@ import {
 
 
 export default function Home() {
-  const [creditAmt, setCreditAmt] = useState('');
+   const [creditAmt, setCreditAmt] = useState('');
   const [debitAmt, setDebitAmt] = useState('');
   const [cashamtdata, setCashamtdata] = useState('')
-
   const [alltransactions, setAlltransactions] = useState([])
   const [userid, setUserid] = useState()
   const loadlogineduser = async() => {
-    const response =JSON.parse(localStorage.getItem("exloginuser"))
+  const response =JSON.parse(localStorage.getItem("exloginuser"))
    setUserid(response._id)
   }
-
-
-   const data = [
-      { name: "credit", amount: creditAmt?creditAmt:50 },
-    { name: "debit", amount: debitAmt?debitAmt:50 },
-    // { name: "Twiter", users: 1000000000 },
-    // { name: "Telegram", users: 500000000 },
-  ];
-
-
- 
-     
-
-
-  useEffect(() => {
-   
-
-
-   
-      if (!(JSON.parse(localStorage.getItem('exloginuser')))) {
-
-        if (!(JSON.parse(localStorage.getItem('exsinguser')))) {
-          window.location.href = '/singup'
-          return
-
-        }
-        window.location.href = '/login'
-
-      }
-
-      loaduserfromlclStr11();
-      if (!(JSON.parse(localStorage.getItem('excheckpass')))){
-        setModelclass('postmodelhome')
-        setModelwrapper('model-wrapperhome')
-        document.body.style.overflowY = "hidden"
-      }
-
-      loadlogineduser()
-  
-
-
-
-   
-
-
-
-  
-
-
-
-
-
-
-
-
-  }, [])
-  console.log(userid)
-
-  // -------------all transactions-----------------
-  const [transactions, setTransactions] = useState([])
   const loadTransaction = async () => {
     // if (!userid) {
     //   alert('user not found')
@@ -130,24 +70,57 @@ export default function Home() {
 
 
   }
-  console.log(creditAmt)
-  console.log(debitAmt)
-  useEffect(() => {
+useEffect(() => {
+      if (!(JSON.parse(localStorage.getItem('exloginuser')))) {
 
-    loadgetapicashamt();
-    loadTransaction()
-  }, [userid])
-  // console.log(userid)
-  // console.log(transactions)
+        if (!(JSON.parse(localStorage.getItem('exsinguser')))) {
+          window.location.href = '/singup'
+          return
+
+        }
+        window.location.href = '/login'
+
+      }
+
+      loaduserfromlclStr11();
+      if (!(JSON.parse(localStorage.getItem('excheckpass')))){
+        setModelclass('postmodelhome')
+        setModelwrapper('model-wrapperhome')
+        document.body.style.overflowY = "hidden"
+      }
+
+      loadlogineduser()
+      loadgetapicashamt()
+        loadTransaction()
+
+ }, [])
+  console.log(userid)
+
+  // -------------all transactions-----------------
+    const [transactions, setTransactions] = useState([])
+
+ 
+   const data = [
+    { name: "credit", amount: creditAmt?creditAmt:50 },
+    { name: "debit", amount: debitAmt?debitAmt:50 },
+
+];
+//  useEffect(()=>{
+//   loadgetapicashamt()
+//  },[userid])
 
 
-  // --------------get cash------------
+    // --------------get cash------------
 
   const loadgetapicashamt = async () => {
-    const response = await axios.get(`/api/cashamount/657fe1e580bd9bf7ea39b4fd`)
+   try{
+    const response = await axios.get(`/api/cashamount/65818841d329dcdfc042950e`)
     if (response?.data?.data) {
       setCashamtdata((response?.data?.data[0]).cash)
     }
+   }catch(err){
+    console.log(err)
+   }
   }
   //    console.log(cashamtdata.cash)
 

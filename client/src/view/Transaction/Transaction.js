@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import SideBar from '../../components/SideBar/SideBar'
 import './Transaction.css'
 import axios from 'axios'
-import plus from './plus.png'
+import plus from './plus3.png'
 
- import TransacCard from '../../components/TransacCard/TransacCard'
+   import TransacCard from '../../components/TransacCard/TransacCard'
 
 
 
 export default function Transaction() {
-  const [transactions, setTransactions] = useState([])
+   const [transactions, setTransactions] = useState([])
   const [userid, setUserid] = useState('')
   const [creditAmt, setCreditAmt] = useState('');
   const [debitAmt, setDebitAmt] = useState('');

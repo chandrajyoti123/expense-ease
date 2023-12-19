@@ -14,7 +14,7 @@ dotenv.config()
 
 const app = express()
 app.use(express.json())
-const __dirname = path.resolve();
+  const __dirname = path.resolve();
 const connectMongoDB = async () => {
     const connect = await mongoose.connect(process.env.MONGODB_URI)
     if (connect) {
@@ -42,13 +42,13 @@ const connectMongoDB = async () => {
         })
     }
 })
-   app.get("/api/transactions", async (req, res) => {
+     app.get("/api/transactions", async (req, res) => {
     const alltransaction = await Transaction.find().populate('user');
     return res.json({
         success: true,
         data: alltransaction,
         message: "all transaction fetched successfully"
-    })
+      })
 })
 app.get('/api/transactions/:_id', async (req, res) => {
 

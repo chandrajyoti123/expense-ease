@@ -115,10 +115,10 @@ const year = dateObject.getFullYear();
         </div>
         <div className='transaction-card3'>
           <div className='edit-section'>
-          <spna><img src={trash}  className='edit-img' onClick={()=>{
+          <spna><img src={trash}  className='edit-img cursor-pointer' onClick={()=>{
             deletetransaction(_id)
           }} /></spna>
-          <spna><img src={edit}   className='edit-img' onClick={()=>{
+          <spna><img src={edit}   className='edit-img cursor-pointer' onClick={()=>{
             editetransactions(_id)
           }}/></spna>
           </div>

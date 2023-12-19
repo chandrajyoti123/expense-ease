@@ -38,4 +38,5 @@
 .cash-btn{
     background-color: #f8eeb9;
     box-shadow: 0 0 10px 3px #f4e28b;
+    cursor: pointer;
 }

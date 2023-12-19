@@ -85,9 +85,19 @@ display: none;
 }
 .plus-img{
     width: 70px;
+    cursor: pointer;
     position:  fixed;
       right: 40px;
       bottom: 60px;
+     
+      padding: 5px;
+      box-shadow: 0 0 10px 4px   	 #aea579;
+     border-radius: 50%;
+    
+}
+
+.cursor-pointer{
+    cursor: pointer; 
 }
 
 .postmodel{
@@ -110,7 +120,7 @@ display: none;
     width:90% ;
     height: auto;
     padding: 20px 0 20px 0;
-  
+
     /* background-color: #fcf7de; */
 }
 .model-heading{
